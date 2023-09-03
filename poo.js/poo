@@ -1,0 +1,61 @@
+const listaDeContatos = [];
+
+
+function adicionarContato(nome, telefone, email) {
+  const novoContato = {
+   nome: nome,
+    telefone: telefone,
+    email: email
+  };
+  listaDeContatos.push(novoContato);
+}
+
+
+function visualizarContatos() {
+  console.log("Lista de Contatos:");
+  listaDeContatos.forEach((contato, index) => {
+    console.log(`${index + 1}. Nome: ${contato.nome}, Telefone: ${contato.telefone}, Email: ${contato.email}`);
+  });
+}
+
+
+function editarContato(index, nome, telefone, email) {
+  if (index >= 0 && index < listaDeContatos.length) {
+    listaDeContatos[index].nome = nome;
+    listaDeContatos[index].telefone = telefone;
+    listaDeContatos[index].email = email;
+    console.log("Contato editado com sucesso!");
+  } else {
+    console.log("Índice de contato inválido.");
+  }
+}
+
+
+function excluirContato(index) {
+  if (index >= 0 && index < listaDeContatos.length) {
+    listaDeContatos.splice(index, 1);
+    console.log("Contato excluído com sucesso!");
+  } else {
+    console.log("Índice de contato inválido.");
+  }
+}
+
+
+function pesquisarContatosPorNome(nome) {
+  const resultados = listaDeContatos.filter(contato => contato.nome.toLowerCase().includes(nome.toLowerCase()));
+  console.log("Resultados da pesquisa:");
+  resultados.forEach((contato, index) => {
+    console.log(`${index + 1}. Nome: ${contato.nome}, Telefone: ${contato.telefone}, Email: ${contato.email}`);
+  });
+}
+
+adicionarContato("joe", "988775566", "joe@example.com");
+adicionarContato("love", "986554477", "love@example.com");
+
+visualizarContatos();
+
+editarContato(0, "joe goldberg", "987678964", "joe. goldberga@example.com");
+
+excluirContato(1);
+
+pesquisarContatosPorNome("joe");
